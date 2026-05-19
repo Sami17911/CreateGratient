@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Gradient</title>
+    <style>
+        body{
+            background-image: linear-gradient(215deg,rgba(45, 159, 161, 1) , rgba(255, 170, 0, 1) );
+            width:90vw;
+            height:97.8vh;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        button{
+            border-radius: 20px;
+            padding: 10px;
+            border: 0px;
+        }
+        #first_clr{
+            background-color: #2D9FA1;
+        }
+        #sec_clr{
+            background-color:#FFAA00 ;
+        }
+        .gradient{
+            border:0px solid rgb(243, 249, 250);
+            border-radius: 2px;
+            padding: 10px;
+            box-shadow:-2px 0px 0px 0px rgba(211, 232, 241, 0.741);
+            background-color:rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div>
+            <button id="first_clr">#2D9FA1</button>
+            <button id="sec_clr">#FFAA00</button>
+        </div>
+        <h3>Copy Your Code Here</h2>
+        <div class="gradient">
+            background-image: linear-gradient(215deg, #2D9FA1 , #FFAA00 );
+        </div>
+        <script>
+            let btn1=document.getElementById('first_clr');
+            let btn2=document.getElementById('sec_clr');
+            let gradient=document.querySelector('.gradient');
+            let rgb1='#2D9FA1';
+            let rgb2='#FFAA00';
+            const handleFirstClr=()=>{
+                let hexaValues='0123456789ABCDEF';
+                let colors='#';
+                for(let i=0;i<6;i++){
+                    colors=colors+(hexaValues[Math.floor(Math.random() *16)]);                   
+                }
+                return colors;
+            }
+            const handleSecClr=()=>{
+                let hexaValues='0123456789ABCDEF';
+                let colors='#';
+                for(let i=0;i<6;i++){
+                    colors=colors+(hexaValues[Math.floor(Math.random() *16)]);                   
+                }
+                return colors;
+            }            
+            const handleBtn1=()=>{
+                rgb1=handleFirstClr();
+                document.body.style.backgroundImage=`linear-gradient(215deg,${rgb1},${rgb2})`;
+                gradient.innerHTML=`background-image: linear-gradient(215deg, ${rgb1} , ${rgb2})`;
+            }
+            const handleBtn2=()=>{
+                rgb2=handleSecClr();
+                document.body.style.backgroundImage=`linear-gradient(215deg,${rgb1},${rgb2})`;
+                gradient.innerHTML=`background-image: linear-gradient(215deg,${rgb1}, ${rgb2})`;
+            }
+            btn1.addEventListener('click',handleBtn1);
+            btn2.addEventListener('click',handleBtn2);
+            gradient.addEventListener('click',()=>{
+                navigator.clipboard.writeText(gradient.innerText);
+                alert('Copied Your Code');
+            })
+            
+        </script>
+    </section>
+</body>
+</html>
